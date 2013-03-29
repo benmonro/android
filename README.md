@@ -11,7 +11,7 @@ var adb = require("android");
 
 Get attached device id
 ----------------------
-```
+```javascript
 adb.firstDevice(function(deviceId){
 	if(deviceId) {
 		//there's a device attached, do cool stuff
