@@ -1,6 +1,6 @@
 {
   "name": "android",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "various android utils & commands for node",
   "main": "android.js",
   "scripts": {
