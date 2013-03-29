@@ -35,7 +35,7 @@ Installing an APK
 -----------------
 
 ```javascript
-adb.installApk("/path/to/my.apk", function() {
+adb.install("/path/to/my.apk", function() {
 	//do cool stuff
 });
 ```

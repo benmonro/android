@@ -3,14 +3,17 @@ var exec = require('child_process').exec;
 
 exports.isInstalled = function (pattern, isInstalledCallback) {
 
-    var isInstalledCommand = "adb shell ls /data/app/" + pattern; //com.zonarsystems.mockvehicledeviceinfo*";
+    var isInstalledCommand = "adb shell pm list packages| grep package:" + pattern;
+    console.log(isInstalledCommand);
     exec(isInstalledCommand, function (err, stdout, stderr) {
-        isInstalledCallback(stdout.indexOf("No such file or directory") === -1);
+        console.log("result:\n" + stdout);
+
+        isInstalledCallback(stdout.indexOf(pattern) >= 0);
     });
 
 }
 
-exports.installApk = function (pathToApk, completedCallback) {
+exports.install = function (pathToApk, completedCallback) {
 
 
     sys.print("installing " + pathToApk);
@@ -30,9 +33,12 @@ exports.firstDevice = function (callback) {
         var findDeviceId = /\n([\d\w]+)\s+/m;
         var match = findDeviceId.exec(stdout);
 
+        console.log("adb devices:\n" + stdout);
 
         if (match != null) {
             callback(match[1]);
+        } else {
+            callback();
         }
     });
 }
