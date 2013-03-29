@@ -53,7 +53,9 @@ adb.push("/path/to/src, "/path/to/target", function (err) {
 Sending a broadcast
 -------------------
 ```javascript
-adb.sendBroadcast({action:"com.example.ACTION_JACKSON", extras:{someKey:"value", someOtherKey: "value"}, function(response){
+var options = {action:"com.example.ACTION_JACKSON", extras:{key:"lime", pie: "good"};
+
+adb.sendBroadcast(options, function(response){
 	console.log("response data: " + response.data);
 	console.log("response message: " + response.message);
 });
