@@ -35,19 +35,19 @@ Installing an APK
 -----------------
 
 ```javascript
-	adb.installApk("/path/to/my.apk", function() {
-		//do cool stuff
-	});
+adb.installApk("/path/to/my.apk", function() {
+	//do cool stuff
+});
 ```
 
 Pushing a file
 --------------
 ```javascript
-	adb.push("/path/to/src, "/path/to/target", function (err) {
-		if(!err) {
-			//do cool stuff
-		}
-	});
+adb.push("/path/to/src, "/path/to/target", function (err) {
+	if(!err) {
+		//do cool stuff
+	}
+});
 ```
 
 Sending a broadcast
