@@ -1,0 +1,21 @@
+{
+  "name": "android",
+  "version": "0.0.2",
+  "description": "various android utils & commands for node",
+  "main": "android.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benmonro/android.git"
+  },
+  "author": "Ben Monro",
+  "license": "BSD",
+  "readmeFilename": "README.md",
+  "gitHead": "e7eaa71d632007fc83ecd965c3098fb752c54c1e",
+  "keywords": [
+    "android",
+    "adb"
+  ]
+}
