@@ -13,18 +13,18 @@ exports.isInstalled = function (pattern, isInstalledCallback) {
 exports.installApk = function (pathToApk, completedCallback) {
 
 
-        sys.print("installing " + pathToApk);
-        var install = "adb install " + pathToApk;
+    sys.print("installing " + pathToApk);
+    var install = "adb install " + pathToApk;
 
-        exec(install, function (err, stdout, stderr) {
-            sys.print("result of " + install + ": " + stdout);
+    exec(install, function (err, stdout, stderr) {
+        sys.print("result of " + install + ": " + stdout);
 
-            completedCallback();
-        });
+        completedCallback();
+    });
 
 }
 
-exports.firstDevice = function(callback) {
+exports.firstDevice = function (callback) {
     adbDevices = exec("adb devices", function (error, stdout, stderr) {
 
         var findDeviceId = /\n([\d\w]+)\s+/m;
@@ -37,6 +37,12 @@ exports.firstDevice = function(callback) {
     });
 }
 
+exports.push = function (from, to, callback) {
+    exec("adb push " + from + " " + to, function(error, stdout, stderr){
+        callback(error);
+    });
+}
+
 exports.sendBroadcast = function (options, callback) {
     var extras = "";
 
@@ -45,15 +51,16 @@ exports.sendBroadcast = function (options, callback) {
     }
 
     var broadcastCmd = "adb shell am broadcast -a \"" + options.action + "\"" + extras;
-                exec(broadcastCmd, function (error, stdout, stderr) {
+    console.log("sending command: " + broadcastCmd);
+    exec(broadcastCmd, function (error, stdout, stderr) {
 
-                        var dataMatch = (/data="(\{.*\})"/m).exec(stdout);
-                        var response = {};
-                        if (dataMatch) {
-                            response.data = dataMatch[1];
-                            response.message = stdout;
-                        }
-                        callback(response);
-                    }
-                );
+            var dataMatch = (/data="(\{.*\})"/m).exec(stdout);
+            var response = {};
+            if (dataMatch) {
+                response.data = dataMatch[1];
+                response.message = stdout;
+            }
+            callback(response);
+        }
+    );
 };
