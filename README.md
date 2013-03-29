@@ -43,7 +43,7 @@ adb.installApk("/path/to/my.apk", function() {
 Pushing a file
 --------------
 ```javascript
-adb.push("/path/to/src, "/path/to/target", function (err) {
+adb.push("/path/to/src", "/path/to/target", function (err) {
 	if(!err) {
 		//do cool stuff
 	}
