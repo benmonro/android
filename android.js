@@ -30,12 +30,13 @@ exports.install = function (pathToApk, completedCallback) {
 exports.firstDevice = function (callback) {
     adbDevices = exec("adb devices", function (error, stdout, stderr) {
 
-        var findDeviceId = /\n([\d\w]+)\s+/m;
+        var findDeviceId = /\n([\d\w\.\:]+)\s+/m;
         var match = findDeviceId.exec(stdout);
 
         console.log("adb devices:\n" + stdout);
 
         if (match != null) {
+            console.log("found a device");
             callback(match[1]);
         } else {
             callback();
